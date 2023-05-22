@@ -1,0 +1,106 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #000;
+	color: #fff;
+}
+
+.timestamp-container {
+	width: 100%;
+	text-align: center;
+	margin-top: 5%;
+}
+
+.timestamp-container .time {
+	font-size: 80px;
+}
+
+.timestamp-container .date {
+	font-size: 40px;
+}
+
+.unit.unit_wind_m_s {
+	display: none;
+}
+
+.meteo-container {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 2px solid;
+}
+
+.meteo-container .temp {
+	font-size: 35px;
+	display: flex;
+	flex-direction: row;
+	gap: 60px;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.meteo-container .temp .val {
+	font-size: 50px;
+}
+
+.meteo-container .temp .real .val {
+	font-size: 80px;
+}
+
+.meteo-container .temp small {
+	font-size: .6em;
+}
+
+.meteo-container .iconify {}
+
+.meteo-container .addition-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.meteo-container .wind,
+.meteo-container .humidity {
+  font-size: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.meteo-container .wind .item-title,
+.meteo-container .humidity .item-title {
+	display: none;
+}
+
+.meteo-container .wind .unit_wind_km_h {
+	display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 10px;
+  margin-left: 10px;
+  align-items: center;
+}
+
+.meteo-container .wind .item-measure {
+	display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 20px;
+  font-size: 30px;
+}
+
+.current-version {
+	position: fixed;
+	right: 15px;
+	bottom: 15px;
+	font-size: 18px;
+}
+
+.imaginary {
+  text-align: right;
+}
