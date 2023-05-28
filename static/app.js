@@ -14,7 +14,7 @@ function updateTimestamp(timeContainer, dateContainer) {
 	date.push(timestamp.getMonth());
 	date.push(timestamp.getFullYear());
 	date = date.map(i => i < 10 ? `0${i}` : i);
-	let dayName = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"][timestamp.getDay() - 1];
+	let dayName = ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"][timestamp.getDay()];
 	dateContainer.innerHTML = `${dayName}. ${(date.join("/"))}`;
 }
 
@@ -49,10 +49,25 @@ function updateMeteo() {
 		const wind = cont.querySelector(".now-info-item.wind");
 		const nowDesc = cont.querySelector(".now-desc");
 		const humidity = cont.querySelector(".now-info-item.humidity").childNodes[0];
+		const sunrise = cont.querySelector(".now-astro-sunrise");
+		const sunset = cont.querySelector(".now-astro-sunset");
+		const sunsetTime = sunset.querySelector(".time").innerHTML.split(":");
+		const sunriseTime = sunrise.querySelector(".time").innerHTML.split(":");
 
 		const meteoContainer = document.querySelector(".meteo-container");
 		meteoContainer.querySelector(".temp .real").innerHTML = `<span class="val">${realTemp.innerHTML}<small>C°</small></span>`;
-		meteoContainer.querySelector(".temp .imaginary").innerHTML = `Ощущаеться как <span class="val">${imaginaryTemp.innerHTML}<small>C°</small></span>`;
+		
+		let sunState;
+		if((new Date()).getHours() > parseInt(sunriseTime[0]) && (new Date()).getMinutes() > parseInt(sunriseTime[1])) {
+			sunState = sunset.innerHTML;
+		}
+		if((new Date()).getHours() > parseInt(sunsetTime[0]) && (new Date()).getMinutes() > parseInt(sunsetTime[1])) {
+			sunState = sunrise.innerHTML;
+		}
+		console.log(parseInt(sunriseTime[0]), (new Date()).getHours());
+		// TODO: rename .imaginary -> .sunrize-sunset
+		meteoContainer.querySelector(".temp .imaginary").innerHTML = sunState;
+		
 		meteoContainer.querySelector(".wind").innerHTML = `<span class="iconify" data-icon="mdi-weather-windy"></span> ${wind.innerHTML}`;
 		meteoContainer.querySelector(".now-description").innerHTML = `${nowDesc.innerHTML}`;
 		meteoContainer.querySelector(".humidity").innerHTML = `<span class="iconify" data-icon="mdi-water-outline"></span> ${humidity.innerHTML}`;
