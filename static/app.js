@@ -58,16 +58,17 @@ function updateMeteo() {
 		meteoContainer.querySelector(".temp .real").innerHTML = `<span class="val">${realTemp.innerHTML}<small>C°</small></span>`;
 		
 		let sunState;
-		if((new Date()).getHours() > parseInt(sunriseTime[0]) && (new Date()).getMinutes() > parseInt(sunriseTime[1])) {
+		const curTimestamp = ((new Date()).getHours() * 60 + (new Date()).getMinutes());
+		if( curTimestamp > (parseInt(sunriseTime[0]) * 60 + parseInt(sunriseTime[1])) ) {
 			sunState = sunset.innerHTML;
 		}
-		if((new Date()).getHours() > parseInt(sunsetTime[0]) && (new Date()).getMinutes() > parseInt(sunsetTime[1])) {
+		if(curTimestamp > (parseInt(sunsetTime[0]) * 60 + parseInt(sunsetTime[1]))) {
 			sunState = sunrise.innerHTML;
 		}
 		console.log(parseInt(sunriseTime[0]), (new Date()).getHours());
 		// TODO: rename .imaginary -> .sunrize-sunset
 		meteoContainer.querySelector(".temp .imaginary").innerHTML = sunState;
-		
+
 		meteoContainer.querySelector(".wind").innerHTML = `<span class="iconify" data-icon="mdi-weather-windy"></span> ${wind.innerHTML}`;
 		meteoContainer.querySelector(".now-description").innerHTML = `${nowDesc.innerHTML}`;
 		meteoContainer.querySelector(".humidity").innerHTML = `<span class="iconify" data-icon="mdi-water-outline"></span> ${humidity.innerHTML}`;
