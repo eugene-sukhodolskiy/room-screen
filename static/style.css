@@ -33,7 +33,7 @@ body {
 }
 
 .meteo-container .temp {
-	font-size: 35px;
+	font-size: 45px;
 	display: flex;
 	flex-direction: row;
 	gap: 60px;
